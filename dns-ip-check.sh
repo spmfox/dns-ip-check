@@ -20,6 +20,10 @@ file_AlertFile="/dev/shm/.dns-ip-check.txt"	# Full path to the file where the la
 opt_Debug=""                                    # Debug setting, if off then nothing will print to logs on success
 
 # Script Begins
+if [ "$1" == "debug" ]; then
+ opt_Debug="True"
+fi
+
 var_DNSreply=$(nslookup $opt_DNSname $opt_DNSserver |grep "Address:" |grep -v '#53' |awk '{print $2}')
 var_IPreply=$(curl -s $opt_IPcheckServer)
 
