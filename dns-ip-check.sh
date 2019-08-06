@@ -11,7 +11,7 @@
 opt_FriendlyName=""                             # This name will appear in the message
 opt_TelegramBotToken=""                         # Token of Telegram Bot
 opt_TelegramMessageID=""                        # ID of the Telegram conversation to post the alert to
-opt_AlertTimeoutSeconds="43200"                 # Alerts wont go out within these seconds of the last email
+opt_AlertTimeoutSeconds="43200"                 # Alerts wont go out within these seconds of the last alert
 opt_DNSserver=""                                # Server to check DNS records, use the web server most likely
 opt_DNSname=""                                  # (sub)domain to check the IP address for
 opt_IPcheckServer="https://icanhazip.com"	# Service for checking IP address, should return ONLY the IP
