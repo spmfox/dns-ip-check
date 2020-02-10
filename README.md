@@ -14,8 +14,6 @@ Lastly a service that will return your public IP address via the curl command. T
 I can't cover the methods of creating Bots or getting your conversation ID from Telegram because these methods may change in the future. Here are the basic steps:
 1. Create Telegram Bot, get the Bot Token ID
 2. Create a conversation or channel, get the ID
-3. ???
-4. Profit
 
 
 ## Variables
