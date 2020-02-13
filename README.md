@@ -11,10 +11,8 @@ Once you have a (sub)domain pointing to your target IP address, you'll need to s
 Lastly a service that will return your public IP address via the curl command. This is how we compare what your IP should be vs what it actually is.
 
 ## Telegram
-I can't cover the methods of creating Bots or getting your conversation ID from Telegram because these methods may change in the future. Here are the basic steps:
-1. Create Telegram Bot, get the Bot Token ID
-2. Create a conversation or channel, get the ID
-
+You will need a Telegram bot HTTP API and a chat id, I have created a page to show the minimum steps.
+* https://github.com/spmfox/documentation/blob/master/telegram.md
 
 ## Variables
 Here is a list of variables to edit for normal operation
