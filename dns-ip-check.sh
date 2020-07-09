@@ -1,4 +1,5 @@
 #!/bin/bash
+#spmfox@foxwd.com
 
 # This is a simple script to check the public IP address of this machine vs the IP address in DNS and send a telegram message if its wrong.
 
