@@ -18,12 +18,6 @@ opt_DNSname=""                                  # (sub)domain to check the IP ad
 opt_IPcheckServer="https://icanhazip.com"	# Service for checking IP address, should return ONLY the IP
 
 file_AlertFile="/dev/shm/.dns-ip-check.txt"	# Full path to the file where the last message is stored
-opt_Debug=""                                    # Debug setting, if off then nothing will print to logs on success
-
-# Script Begins
-if [ "$1" == "debug" ]; then
- opt_Debug="True"
-fi
 
 var_DNSreply=$(nslookup $opt_DNSname $opt_DNSserver |grep "Address:" |grep -v '#53' |awk '{print $2}')
 var_IPreply=$(curl -s $opt_IPcheckServer)
@@ -41,20 +35,18 @@ str_CurlTelegram=$(curl -s -X POST -H "Content-Type: application/json" -d "$str_
 }
 
 if [ "$var_DNSreply" == "$var_IPreply" ]; then
- if [ -n "$opt_Debug" ]; then
-  logger -s $str_SuccessMessage
+ logger -s $str_SuccessMessage
+ fn_TriggerMessage
+fi
+
+if [ -e $file_AlertFile ]; then
+ var_CurrentEpoch=$(date +%s)
+ var_AlertEpoch=$(stat -c %Y $file_AlertFile)
+ if [ $(($var_CurrentEpoch - $var_AlertEpoch)) -gt $opt_AlertTimeoutSeconds ]; then
+  logger -s $str_FailureMessage |tee
   fn_TriggerMessage
  fi
 else
- if [ -e $file_AlertFile ]; then
-  var_CurrentEpoch=$(date +%s)
-  var_AlertEpoch=$(stat -c %Y $file_AlertFile)
-  if [ $(($var_CurrentEpoch - $var_AlertEpoch)) -gt $opt_AlertTimeoutSeconds ]; then
-   logger -s $str_FailureMessage |tee
-   fn_TriggerMessage
-  fi
- else
-  logger -s $str_FailureMessage
-  fn_TriggerMessage
- fi
+ logger -s $str_FailureMessage
+ fn_TriggerMessage
 fi
