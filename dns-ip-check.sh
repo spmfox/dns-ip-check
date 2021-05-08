@@ -44,6 +44,9 @@ if [ -e $file_AlertFile ]; then
  if [ $(($var_CurrentEpoch - $var_AlertEpoch)) -gt $opt_AlertTimeoutSeconds ]; then
   echo $str_FailureMessage
   fn_TriggerMessage
+ else
+  echo $str_FailureMessage
+  echo "Skipping alert message due to the timeout threshold not reached."
  fi
 else
  echo $str_FailureMessage
