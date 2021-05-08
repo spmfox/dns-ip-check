@@ -31,18 +31,22 @@ str_IPreply=$(curl -s $opt_IPcheckServer)
 str_FailureMessage="dns-ip-check.sh: $opt_FriendlyName IP does NOT match DNS entry. $opt_DNSname is: ($str_DNSreply). $opt_IPcheckServer returns ($str_IPreply) as public IP."
 str_SuccessMessage="dns-ip-check.sh: $opt_FriendlyName IP matches DNS entry. $opt_DNSname resolves to $str_DNSreply. $opt_IPcheckServer returns $str_IPreply as public IP."
 
-str_GenerateJSON=$(cat <<EOF 
+function fn_TriggerMessage {
+#Generate messages for Telegram and email
+ str_GenerateJSON=$(cat <<EOF
 {"chat_id": "$opt_TelegramMessageID", "text": "$str_FailureMessage"}
 EOF
 )
-
-function fn_TriggerMessage {
  echo $str_FailureMessage > $file_AlertFile
+
+#Telegram message 
  if [ -n "$opt_TelegramBotToken" ] && [ -n "$opt_TelegramMessageID" ]; then
   str_CurlTelegram=$(curl -s -X POST -H "Content-Type: application/json" -d "$str_GenerateJSON" https://api.telegram.org/bot$opt_TelegramBotToken/sendMessage)
  else
   echo "One or both Telegram settings are missing, not sending Telegram message."
  fi
+
+#Email message
  if [ -n "$opt_EmailServer" ] && [ -n "$opt_EmailFrom" ] && [ -n "$opt_EmailTo" ] && [ -n "$opt_EmailUser" ] && [ -n "$opt_EmailPassword" ]; then
   echo "From: $opt_EmailFrom" > $file_AlertEmail
   echo "To: $opt_EmailTo" >> $file_AlertEmail
