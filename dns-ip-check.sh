@@ -6,7 +6,6 @@
 # This script assumes that the following software is installed and configured correctly:
 # curl
 # nslookup
-# logger
 
 # User Options
 opt_FriendlyName=""                             # This name will appear in the message
@@ -35,7 +34,7 @@ str_CurlTelegram=$(curl -s -X POST -H "Content-Type: application/json" -d "$str_
 }
 
 if [ "$var_DNSreply" == "$var_IPreply" ]; then
- logger -s $str_SuccessMessage
+ echo $str_SuccessMessage
  fn_TriggerMessage
 fi
 
@@ -43,10 +42,10 @@ if [ -e $file_AlertFile ]; then
  var_CurrentEpoch=$(date +%s)
  var_AlertEpoch=$(stat -c %Y $file_AlertFile)
  if [ $(($var_CurrentEpoch - $var_AlertEpoch)) -gt $opt_AlertTimeoutSeconds ]; then
-  logger -s $str_FailureMessage |tee
+  echo $str_FailureMessage |tee
   fn_TriggerMessage
  fi
 else
- logger -s $str_FailureMessage
+ echo $str_FailureMessage
  fn_TriggerMessage
 fi
