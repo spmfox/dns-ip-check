@@ -35,7 +35,6 @@ str_CurlTelegram=$(curl -s -X POST -H "Content-Type: application/json" -d "$str_
 
 if [ "$var_DNSreply" == "$var_IPreply" ]; then
  echo $str_SuccessMessage
- fn_TriggerMessage
 fi
 
 if [ -e $file_AlertFile ]; then
@@ -50,5 +49,6 @@ if [ -e $file_AlertFile ]; then
  fi
 else
  echo $str_FailureMessage
+ echo $str_FailureMessage > $file_AlertFile
  fn_TriggerMessage
 fi
