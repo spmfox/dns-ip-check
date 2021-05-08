@@ -1,9 +1,10 @@
 #!/bin/bash
 #spmfox@foxwd.com
 
-# This is a simple script to check the public IP address of this machine vs the IP address in DNS and send a telegram message if its wrong.
+# Bash script to check a (sub)domain, find its IP address, and compare it to the external IP on the current system.
+# If they do not match, then a telegram message and/or email is sent.
 
-# This script assumes that the following software is installed and configured correctly:
+# This script uses the following commands:
 # curl
 # nslookup
 
