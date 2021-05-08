@@ -42,7 +42,7 @@ if [ -e $file_AlertFile ]; then
  var_CurrentEpoch=$(date +%s)
  var_AlertEpoch=$(stat -c %Y $file_AlertFile)
  if [ $(($var_CurrentEpoch - $var_AlertEpoch)) -gt $opt_AlertTimeoutSeconds ]; then
-  echo $str_FailureMessage |tee
+  echo $str_FailureMessage
   fn_TriggerMessage
  fi
 else
