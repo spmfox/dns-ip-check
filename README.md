@@ -28,18 +28,15 @@ Here is a list of variables to edit for normal operation
 |opt_IPcheckServer|Service for checking IP address, should return ONLY the IP (defaults to https://icanhazip.com)|
 
 ## Troubleshooting
-I tried to make it as simple as possible however I could have made some mistakes. You can check the following commands manually to confirm why the script is not working. Be sure to replace the variables below with your actual entries.
+You can check the following commands manually to confirm why the script is not working. Be sure to replace the variables below with your actual entries.
 
-First thing to try is running the script in debug mode - this will make the script output and message even a successful check:
+If you dont get an error from the curl output, you can try to run the script with full output from bash. You will need to sort through and double check your variables and outputs from curl.
 ```
-./dns-ip-check.sh debug
+bash -x dns-ip-check.sh
 ```
+Using the "bash -x" above may show you an error from the Telegram API, perhaps with wrong information supplied. Or you may find that your password for the email is not being properly parsed. 
 
-If that does not work, you can try to have bash show all output:
-```
-bash -x dns-ip-check.sh debug
-```
-Using the "bash -x" above may show you an error from the Telegram API, perhaps with wrong information supplied. You can use the following commands to drill further into this.
+You can use the following commands to manually check the outputs, and manually send Telegram and email messages.
 
 | Command | Purpose |
 | ------- | ------- |
@@ -52,4 +49,9 @@ curl -X POST \
      -H 'Content-Type: application/json' \
      -d '{"chat_id": "(opt_TelegramMessageID)", "text": "This is a test from curl"}' \
      https://api.telegram.org/bot(opt_TelegramBotToken)/sendMessage
+```
+```
+curl --ssl-reqd smtp://mail.example.com --mail-from myself@example.com \
+     --mail-rcpt receiver@example.com --upload-file email.txt \
+     --user 'user@your-account.com:your-account-password'
 ```
