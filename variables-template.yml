@@ -10,6 +10,6 @@
     alert_timout_seconds: 43200
     dns_server: 
     dns_name: 
-    ip_check_server: https://icanhazip.com
+    ip_check_server: https://ipv4.icanhazip.com
     scripts_directory: /opt/scripts
 

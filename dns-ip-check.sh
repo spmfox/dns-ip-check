@@ -20,7 +20,7 @@ opt_EmailPassword=""				# Password for email
 opt_AlertTimeoutSeconds="43200"                 # Alerts wont go out within these seconds of the last alert
 opt_DNSserver=""                                # Server to check DNS records, use the web server most likely
 opt_DNSname=""                                  # (sub)domain to check the IP address for
-opt_IPcheckServer="https://icanhazip.com"	# Service for checking IP address, should return ONLY the IP
+opt_IPcheckServer="https://ipv4.icanhazip.com"	# Service for checking IP address, should return ONLY the IP
 
 file_AlertFile="/dev/shm/.dns-ip-check.txt"	# Full path to the file where the last message is stored
 file_AlertEmail="/dev/shm/.dns-ip-check.eml"	# Full path to the file where the email will be temporarily stored
