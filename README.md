@@ -32,6 +32,14 @@ Here is a list of variables to edit for normal operation
 |opt_DNSname|(sub)domain to check the IP address for|
 |opt_IPcheckServer|Service for checking IP address, should return ONLY the IP (defaults to https://icanhazip.com)|
 
+## Ansible
+I have included a Ansible deployment as well, you can simple run:
+```
+ansible-playbook --ask-pass -i <destination-ip>, deploy.yml
+```
+
+The Ansible playbook will create a folder (/opt/scripts) and put the script there. Then it will create a systemd timer and service file, defaulting to run every 15 minutes. If you want to change this, you can change the systemd timer file. If you do not use systemd then you'll need to manually create a cron job instead.
+
 ## Troubleshooting
 You can check the following commands manually to confirm why the script is not working. Be sure to replace the variables below with your actual entries.
 
