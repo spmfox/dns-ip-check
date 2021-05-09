@@ -1,0 +1,13 @@
+---
+    friendly_name: 
+    telegram_bot_token: 
+    telegram_message_id: 
+    email_server: 
+    email_from: 
+    email_to: 
+    email_user: 
+    email_password: 
+    alert_timout_seconds: 43200
+    dns_server: 
+    dns_name:
+    ip_check_server: https://icanhazip.com
