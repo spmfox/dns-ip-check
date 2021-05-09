@@ -42,7 +42,7 @@ EOF
 #Telegram message 
  if [ -n "$opt_TelegramBotToken" ] && [ -n "$opt_TelegramMessageID" ]; then
   echo "Sending Telegram message."
-  str_CurlTelegram=$(curl --no-progress-meter -X POST -H "Content-Type: application/json" -d "$str_GenerateJSON" https://api.telegram.org/bot$opt_TelegramBotToken/sendMessage)
+  str_CurlTelegram=$(curl -s -X POST -H "Content-Type: application/json" -d "$str_GenerateJSON" https://api.telegram.org/bot$opt_TelegramBotToken/sendMessage)
  else
   echo "One or both Telegram settings are missing, not sending Telegram message."
  fi
@@ -55,7 +55,7 @@ EOF
   echo "Subject: $opt_FriendlyName DNS Check Alert" >> $file_AlertEmail
   echo "" >> $file_AlertEmail
   echo $str_FailureMessage >> $file_AlertEmail
-  str_CurlEmail=$(curl --no-progress-meter --ssl-reqd smtp://$opt_EmailServer --mail-from $opt_EmailFrom --mail-rcpt $opt_EmailTo --upload-file $file_AlertEmail --user "$opt_EmailUser":"$opt_EmailPassword")
+  str_CurlEmail=$(curl -s --ssl-reqd smtp://$opt_EmailServer --mail-from $opt_EmailFrom --mail-rcpt $opt_EmailTo --upload-file $file_AlertEmail --user "$opt_EmailUser":"$opt_EmailPassword")
   rm $file_AlertEmail
  else
   echo "One or more email settings are missing, not sending email message."
