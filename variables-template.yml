@@ -9,7 +9,7 @@
     email_password: 
     alert_timout_seconds: 43200
     dns_server: 
-    dns_name:
+    dns_name: 
     ip_check_server: https://icanhazip.com
     scripts_directory: /opt/scripts
 
