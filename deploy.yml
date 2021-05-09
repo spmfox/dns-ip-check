@@ -1,0 +1,31 @@
+---
+- hosts: all
+  become: yes
+  vars_files:
+    - variables.yml
+
+  tasks:
+  - name: Create directory
+    file: path={{item.path}} state={{item.state}} mode={{item.mode}} attributes={{item.attributes}}
+    with_items:
+      - { path: '{{ scripts_directory }}', state: 'directory', mode: '0755', attributes: '' }
+
+  - name: Copy files
+    template: src={{item.src}} dest={{item.dest}}
+    with_items:
+      - { src: 'dns-ip-check.sh.j2', dest: '{{ scripts_directory }}/dns-ip-check.sh.j2' }
+      - { src: 'dns-ip-check.service.j2', dest: '/etc/systemd/system/dns-ip-check.service' }
+      - { src: 'dns-ip-check.timer', dest: '/etc/systemd/system/dns-ip-check.timer' }
+
+  - name: Force systemd daemon-reload
+    systemd:
+      daemon_reload: yes
+
+  - name: Enable and start systemd services
+    systemd:
+      name: "{{ item }}"
+      state: started
+      enabled: yes
+    with_items:
+      - dns-ip-check.timer
+      - dns-ip-check.service

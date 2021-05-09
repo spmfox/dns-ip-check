@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer to trigger dns-ip-check.service
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=15m
+Unit=dns-ip-check.service
+
+[Install]
+WantedBy=basic.target
