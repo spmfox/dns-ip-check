@@ -33,7 +33,7 @@ Here is a list of variables to edit for normal operation
 |opt_IPcheckServer|Service for checking IP address, should return ONLY the IP (defaults to https://icanhazip.com)|
 
 ## Ansible
-I have included a Ansible deployment as well, you can simple run:
+I have included a Ansible deployment as well. First copy the variables-template.yml to variables.yml and then fill them out. Then you can simply run:
 ```
 ansible-playbook --ask-pass -i <destination-ip>, deploy.yml
 ```
