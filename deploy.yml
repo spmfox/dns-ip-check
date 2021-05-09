@@ -13,7 +13,7 @@
   - name: Copy files
     template: src={{item.src}} dest={{item.dest}}
     with_items:
-      - { src: 'dns-ip-check.sh.j2', dest: '{{ scripts_directory }}/dns-ip-check.sh.j2' }
+      - { src: 'dns-ip-check.sh.j2', dest: '{{ scripts_directory }}/dns-ip-check.sh' }
       - { src: 'dns-ip-check.service.j2', dest: '/etc/systemd/system/dns-ip-check.service' }
       - { src: 'dns-ip-check.timer', dest: '/etc/systemd/system/dns-ip-check.timer' }
 
