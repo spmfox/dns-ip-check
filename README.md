@@ -47,7 +47,7 @@ If you dont get an error from the curl output, you can try to run the script wit
 ```
 bash -x dns-ip-check.sh
 ```
-Using the "bash -x" above may show you an error from the Telegram API, perhaps with wrong information supplied. Or you may find that your password for the email is not being properly parsed. 
+Using the "bash -x" above may show you an error from the Telegram API, perhaps with wrong information supplied. Or you may find that your password for the email is not being properly parsed. You can also try to remove the "-s" from the curl commands in the script to return more errors, or manually try with the commands below.
 
 You can use the following commands to manually check the outputs, and manually send Telegram and email messages.
 
