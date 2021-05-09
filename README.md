@@ -22,6 +22,11 @@ Here is a list of variables to edit for normal operation
 |opt_FriendlyName | This is the name that will appear in the alert message |
 |opt_TelegramBotToken|Token of Telegram Bot|
 |opt_TelegramMessageID|ID of the Telegram conversation to post the alert to|
+|opt_EmailServer|Email SMTP server|
+|opt_EmailFrom|Email to send from|
+|opt_EmailTo|Email to send to|
+|opt_EmailUser|Username for email|
+|opt_EmailPassword|Password for email|
 |opt_AlertTimeoutSeconds|Alerts wont go out within these seconds of the last message (default is 12 hours)|
 |opt_DNSserver|Server to check DNS records, use the web server most likely|
 |opt_DNSname|(sub)domain to check the IP address for|
