@@ -42,7 +42,7 @@ EOF
 #Telegram message 
  if [ -n "$opt_TelegramBotToken" ] && [ -n "$opt_TelegramMessageID" ]; then
   echo "Sending Telegram message."
-  str_CurlTelegram=$(curl -s -X POST -H "Content-Type: application/json" -d "$str_GenerateJSON" https://api.telegram.org/bot$opt_TelegramBotToken/sendMessage)
+  str_CurlTelegram=$(curl --no-progress-meter -X POST -H "Content-Type: application/json" -d "$str_GenerateJSON" https://api.telegram.org/bot$opt_TelegramBotToken/sendMessage)
  else
   echo "One or both Telegram settings are missing, not sending Telegram message."
  fi
