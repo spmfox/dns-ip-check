@@ -9,21 +9,21 @@
 # nslookup
 
 # User Options
-opt_FriendlyName="{{ friendly_name }}"                             # This name will appear in the message
-opt_TelegramBotToken="{{ telegram_bot_token }}"                         # Token of Telegram Bot
-opt_TelegramMessageID="{{ telegram_message_id }}"                        # ID of the Telegram conversation to post the alert to
-opt_EmailServer="{{ email_server }}"				# Email SMTP server
-opt_EmailFrom="{{ email_from }}"				# Email to send from
-opt_EmailTo="{{ email_to }}"					# Email to send to
-opt_EmailUser="{{ email_user }}"				# Username for email
-opt_EmailPassword="{{ email_password }}"				# Password for email
-opt_AlertTimeoutSeconds="{{ alert_timout_seconds }}"                 # Alerts wont go out within these seconds of the last alert
-opt_DNSserver="{{ dns_server }}"                                # Server to check DNS records, use the web server most likely
-opt_DNSname="{{ dns_name }}"                                  # (sub)domain to check the IP address for
-opt_IPcheckServer="{{ ip_check_server }}"	# Service for checking IP address, should return ONLY the IP
+opt_FriendlyName="{{ friendly_name }}"                 # This name will appear in the message
+opt_TelegramBotToken="{{ telegram_bot_token }}"        # Token of Telegram Bot
+opt_TelegramMessageID="{{ telegram_message_id }}"      # ID of the Telegram conversation to post the alert to
+opt_EmailServer="{{ email_server }}"                   # Email SMTP server
+opt_EmailFrom="{{ email_from }}"                       # Email to send from
+opt_EmailTo="{{ email_to }}"                           # Email to send to
+opt_EmailUser="{{ email_user }}"                       # Username for email
+opt_EmailPassword="{{ email_password }}"               # Password for email
+opt_AlertTimeoutSeconds="{{ alert_timout_seconds }}"   # Alerts wont go out within these seconds of the last alert
+opt_DNSserver="{{ dns_server }}"                       # Server to check DNS records, use the web server most likely
+opt_DNSname="{{ dns_name }}"                           # (sub)domain to check the IP address for
+opt_IPcheckServer="{{ ip_check_server }}"	       # Service for checking IP address, should return ONLY the IP
 
-file_AlertFile="/dev/shm/.dns-ip-check.txt"	# Full path to the file where the last message is stored
-file_AlertEmail="/dev/shm/.dns-ip-check.eml"	# Full path to the file where the email will be temporarily stored
+file_AlertFile="/dev/shm/.dns-ip-check.txt"	       # Full path to the file where the last message is stored
+file_AlertEmail="/dev/shm/.dns-ip-check.eml"	       # Full path to the file where the email will be temporarily stored
 
 str_DNSreply=$(nslookup $opt_DNSname $opt_DNSserver |grep "Address:" |grep -v '#53' |awk '{print $2}')
 str_IPreply=$(curl -s $opt_IPcheckServer)
