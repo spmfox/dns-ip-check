@@ -32,6 +32,14 @@ Here is a list of variables to edit for normal operation
 |opt_DNSname|(sub)domain to check the IP address for|
 |opt_IPcheckServer|Service for checking IP address, should return ONLY the IP (defaults to https://icanhazip.com)|
 
+## Ansible
+I have included a Ansible deployment as well. First copy the variables-template.yml to variables.yml and then fill them out. Then you can simply run:
+```
+ansible-playbook --ask-pass -i user@<destination-ip>, deploy.yml
+```
+
+The Ansible playbook will create a folder (/opt/scripts) and put the script there. Then it will create a systemd timer and service file, defaulting to run every 15 minutes. If you want to change this, you can change the systemd timer file. If you do not use systemd then you'll need to manually create a cron job instead.
+
 ## Troubleshooting
 You can check the following commands manually to confirm why the script is not working. Be sure to replace the variables below with your actual entries.
 
@@ -39,7 +47,7 @@ If you dont get an error from the curl output, you can try to run the script wit
 ```
 bash -x dns-ip-check.sh
 ```
-Using the "bash -x" above may show you an error from the Telegram API, perhaps with wrong information supplied. Or you may find that your password for the email is not being properly parsed. It is also possible the curl command may not work as-is for your email provider.
+Using the "bash -x" above may show you an error from the Telegram API, perhaps with wrong information supplied. Or you may find that your password for the email is not being properly parsed. You can also try to remove the "-s" from the curl commands in the script to return more errors, or manually try with the commands below.
 
 You can use the following commands to manually check the outputs, and manually send Telegram and email messages.
 
